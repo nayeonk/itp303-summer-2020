@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My First Web Page</title>
+		<style>
+			/* Write CSS here */
+			/* CSS comments */
+
+			/* browser comes with default spacing. Override them */
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			/* This called a CSS rule*/
+			h1 {
+				/* left hand side is called PROPERTY*/
+				/* right hanf side is called VALUE */
+				color: blue;
+				font-family: Arial;
+				font-size: 55px;
+				/* can even override default properties it came with */
+				font-weight: normal;
+				text-align: center;
+
+				/* Can override default properties, like margin  */
+				margin-bottom: 0;
+				margin-top: 0;
+			}
+			/* A CSS rule changes ALL the matches of this selector */
+			/*img {
+				width: 100px;
+			}*/
+			/* IDs are unique */
+			#main-image {
+				width: 100px;
+				/* Disrupts the normal "flow" of the document. Instead of top to bottom, floats this element and everything that comes after this element is wrapped around it. */
+				float: left;
+				margin-right: 10px;
+			}
+			#second-image {
+				width: 200px;
+				float: right;
+			}
+			/* classes can be used for multiple HTML tags */
+			.green-text {
+				color: green;
+			}
+			/* can select BODY tag. body represents the browser */
+			body {
+				font-family: Arial;
+				background-color: pink;
+			}
+
+			#header {
+				background-color: yellow;
+			}
+			#biology {
+				background-color: skyblue;
+				width: 400px;
+				/* don't mess with heights */
+				/*height: 300px;*/
+				padding-bottom: 50px;
+				padding-left: 10px;
+				padding-right: 10px;
+
+				/* shorthand padding */
+				padding: 30px;
+
+				/* add space OUTSIDE the element (tag) by using margin */
+				margin-left: 40px;
+
+				/* Add border around this div */
+				border-color: black;
+				border-width: 5px;
+				border-style: double;
+
+				/* Shorthand way to write border */
+				border: 5px black double;
+			}
+			#facts {
+				width: 600px;
+				background-color: lavender;
+				/* To center an entire div (not just text) */
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+		</style>
+	</head>
+	<body>
+		<!-- Div by default have a width that is wides as its parent and height that is tall as the contents inside it -->
+		<div id="header">
+			<!-- HTML comment -->
+			<h1><span class="green-text">All</span> About Pikachu</h1>
+		</div>
+
+		<div id="biology">
+
+			<h2 class="green-text">Biology</h2>
+
+			<!-- Image using relative path-->
+			<img id="main-image" src="images/pikachu.jpg" alt="Image of pikachu"/>
+
+			
+
+			<p class="green-text"><strong>Pikachu</strong> is a short, chubby rodent Pokémon. It is covered in yellow fur with two horizontal brown stripes on its back. <em>It has a small</em> mouth, long, pointed ears with black tips, brown eyes, and the two red circles on its cheeks contain pouches for electricity storage. It has short forearms with five fingers on each paw, and its feet each have three toes. At the base of its lightning bolt-shaped tail is a patch of brown fur. A female will have a V-shaped notch at the end of its tail, which looks like the top of a heart. It is classified as a quadruped, but it has been known to stand and walk on its hind legs.</p>
+
+			<!-- Images using ABSOLUTE path -->
+			<img id="second-image" src="https://i.pinimg.com/originals/f3/e1/b8/f3e1b8019f160f88531d8af792716b4f.png" alt="Image of pikachu"/>
+			<p>The anime has shown that wild Pikachu live in groups in forested areas. Pikachu communicate amongst themselves using squeaks and tail-shaking as friendly gestures. Electricity can be used to receive and send messages with each other, as well as other Electric Pokémon species. It raises its tail to check its surroundings, and is occasionally struck by lightning in this position. When groups grow, they can inadvertently cause lightning storms. Pikachu is found foraging for berries it roasts with electricity to make them tender enough to eat. A sure sign that Pikachu inhabits a location is patches of burnt grass. It has been observed eating and sometimes destroying telephone poles, wires, and other electronic equipment.</p>
+		</div>
+
+		<div id="facts">
+
+		<h2>Facts</h2>
+			<!-- ul is short for unordered list -->
+			<ol>
+				<!-- li tag for each bullet point -->
+				<li>Pikachu evolves into Raichu</li>
+				<li>Pikachu was designed by Atusko Nishida</li>
+				<li>The nation of Niue released a one-dollar coin with Pikachu on one side to promote the Pokemon franchise.</li>
+			</ol>
+			<!-- anchor tags for links -->
+			<a href="http://www.google.com" target="_blank">Click me!!!</a>
+			<!-- br tag creates line break -->
+			<br/>
+			<a href="http://www.google.com" target="_blank">Click me!!!</a>
+			<a href="http://www.google.com" target="_blank">Click me!!!</a>
+			<a href="http://www.google.com" target="_blank">Click me!!!</a>
+			<a href="http://www.google.com" target="_blank">Click me!!!</a>
+		</div>
+
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
