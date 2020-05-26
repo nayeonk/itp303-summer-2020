@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coachella Website</title>
+	<style>
+		html, body {
+			padding: 0;
+			margin: 0;
+		}
+		#header {
+			background-color: #f5dfc0;
+			color: blue;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			text-align: center;
+		}
+		#header h1 {
+			font-size: 40px;
+		}
+		#about-container {
+			/*background-color: yellow;*/
+			background-color: pink;
+			width: 1000px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#column1 {
+			background-color: lightgreen; 
+			width: 500px;
+			float: left;
+			text-align: center;
+			padding-top: 20px;
+		}
+		#column2 {
+			background-color: pink;
+			width: 500px;
+			float: left;
+			padding-bottom: 40px;
+			/* Don't set heights */
+			/*height: 300px;*/
+			padding-top: 70px;
+		}
+		.clearfloat {
+			clear: both;
+		}
+		#artist-container {
+			background-color: skyblue;
+			width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#artist-container .column {
+			background-color: #FEF587;
+			/* 3 columns in one row. The row is 1200px / 3 = 400px  */
+
+			/* (15px + 1px + 10px + 358px + 10px + 1px + 15px) * 3 = 1200px */
+			width: 348px;
+			float: left;
+			/* shorthand for padding on top/left/right/bottom */
+			/* padding increases the WIDTH of a div */
+			padding: 10px;
+			/* border also adds to the width of a div*/
+			border: 1px solid black;
+			/* margin creates space OUTSIDE the column */
+			margin: 15px;
+		}
+		#artist-container .column img {
+			width: 100%;
+		}
+		#footer {
+			background-color: black;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<h1>Coachella</h1>
+	</div>
+
+	<div id="about-container">
+		<div id="column1">
+			<img src="images/coachella.png" alt="A picture of a palm tree"/>
+		</div> <!-- end of #column1-->
+		<div id="column2">
+			<p>The Coachella Valley Music and Arts Festival (commonly called Coachella or the Coachella Festival) is an annual music and arts festival held at the Empire Polo Club in Indio, California, in the Coachella Valley in the Colorado Desert. It was co-founded by Paul Tollett and Rick Van Santen in 1999, and is organized by Goldenvoice, a subsidiary of AEG Presents. The event features musical artists from many genres of music, including rock, pop, indie, hip hop and electronic dance music, as well as art installations and sculptures. Across the grounds, several stages continuously host live music.</p>
+		</div> <!-- end of #column2-->
+		<!-- STOP FLOATING HERE -->
+		<div class="clearfloat"></div>
+	</div> <!-- end of #about-container -->
+
+	<div id="artist-container">
+		<div class="column">
+			<img src="images/ariana.jpg"/>
+			<h3>Ariana Grande</h3>
+		</div>
+		<div class="column">
+			<img src="images/ariana.jpg"/>
+			<h3>Ariana Grande</h3>
+		</div>
+		<div class="column">
+			<img src="images/ariana.jpg"/>
+			<h3>Ariana Grande</h3>
+		</div>
+		<!-- STOP FLOATING HERE -->
+		<div class="clearfloat"></div>
+	</div> <!-- end of #artist-container -->
+
+	<div id="footer">
+		Made by Nayeon Kim for ITP 303
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
