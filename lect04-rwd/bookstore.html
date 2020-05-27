@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>USC Bookstore</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial;
+		}
+		#header {
+			height: 400px;
+			line-height: 400px;
+			background-image: url("images/bookstore-bg.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center top;
+			text-align: center;
+		}
+		#header h1 {
+			font-size: 40px;
+			color: white;
+			margin: 0;
+		}
+		h2 {
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		#best-seller, #sale {
+			padding-top: 20px;
+			padding-bottom: 30px;
+			/*border-bottom: 6px solid #ccc;*/
+		}
+
+		/* -- All products are in a div .item -- */
+		.item img {
+			width: 100%;
+		}
+		.item .name {
+			font-weight: bold;
+			text-align: center;
+		}
+		.item .price {
+			text-align: center;
+		}
+
+		/* -- Best Seller -- */
+		#best-seller {
+			/*width: 1020px;*/
+			width: 80%;
+			margin-left: auto;
+			margin-right: auto;
+			background-color: blue;
+		}
+		#best-seller .row .item {
+			background-color: #cdcdcd;
+			float: left;
+			/*width: 300px;*/
+
+			/* Use percentages for widths instead of px */
+			/*width: 29.3333%;
+			padding: 1%;
+			margin: 1%;*/
+
+			/* Magical property - makes padding and border part of the width */
+			box-sizing: border-box;
+			width: 31.3333%;
+			padding: 10px;
+			margin: 1%;
+
+			border: 5px solid black;
+		}
+		/* A better way to clear floats */
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+		/* -- On Sale -- */
+		#sale {
+			/*width: 1360px;*/
+			width: 90%;
+			background-color: yellow;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#sale .row .item {
+			background-color: #cdcdcd;
+			float: left;
+			/*width: 300px;*/
+			width: 23%;
+			box-sizing: border-box;
+			padding: 10px;
+			margin: 1%;
+			
+		}
+		#footer {
+			background-color: black;
+			color: #aaa;
+			font-size: 10px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+		/* Desktop-first approach */
+		/* For screen sizes < 991px */
+		@media(max-width: 991px) {
+			#best-seller {
+				background-color: orange;
+			}
+			#sale {
+				background-color: green;
+			}
+		}
+		/* For screen sizes < 768px */
+		@media(max-width: 768px) {
+			#best-seller {
+				background-color: pink;
+			}
+			#sale {
+				width: 100%;
+				/* Can have a set width as well */
+				width: 400px;
+			}
+			/* At this screen size, display two items per row instead of four items in one row */
+			#sale .row .item {
+				width: 48%;
+			}
+		}
+		@media(max-width: 575px) {
+			#sale {
+				width: 300px;
+			}
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<div id="header">
+		<h1>USC Bookstore Website</h1>
+	</div>
+
+	<div id="best-seller">
+		<h2>Best Sellers</h2>
+		<div class="row">
+			<div class="item">
+				<img src="images/hoodie.jpg" />
+				<div class="name">Hoodie</div>
+				<div class="price">$70.95</div>
+			</div>
+			<div class="item">
+				<img src="images/full-zip.jpg" />
+				<div class="name">Full Zip</div>
+				<div class="price">$63.99</div>
+			</div>
+			<div class="item">
+				<img src="images/pullover.jpg" />
+				<div class="name">Pullover</div>
+				<div class="price">$56.98</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="sale">
+		<h2>On Sale</h2>
+		<div class="row">
+			<div class="item">
+				<img src="images/fleece-pant.jpg" />
+				<div class="name">Fleece Pant</div>
+				<div class="price">$20.05</div>
+			</div>
+			<div class="item">
+				<img src="images/cozy.jpg" />
+				<div class="name">Cozy</div>
+				<div class="price">$20.99</div>
+			</div>
+			<div class="item">
+				<img src="images/polo.jpg" />
+				<div class="name">Polo</div>
+				<div class="price">$25.00</div>
+			</div>
+			<div class="item">
+				<img src="images/shorts.jpg" />
+				<div class="name">Shorts</div>
+				<div class="price">$12.99</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		University of Southern California. 2020.
+	</div>
+
+</body>
+</html>
