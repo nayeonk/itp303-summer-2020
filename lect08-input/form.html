@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS</title>
+	<style>
+		form {
+			width: 500px;
+		}
+		.form-row {
+			margin-bottom: 10px;
+			display: flex;
+		}
+		label {
+			padding-right: 10px;
+			width: 60px;
+		}
+		input {
+			width: 150px;
+			height: 20px;
+		}
+		.error {
+			color: red;
+			font-style: italic;
+			margin-left: 10px;
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="text">Form</h1>
+
+	<form id="form" method="" action="">
+
+		<div class="form-row">
+			<label for="name-input">Name: </label>
+			<input type="text" id="name-input" name="name-input" placeholder="Tommy Trojan" />
+			<div class="error">Error message</div>
+		</div>
+
+		<div class="form-row">
+			<label for="age-input">Age: </label>
+			<input type="text" id="age-input" name="age-input"/> 
+			<div class="error">Error message</div>
+		</div>
+
+		<div class="form-row">
+			<button type="submit" id="go-button">Go</button>
+		</div>
+
+	</form>
+
+<script>
+
+	let number = 7;
+	let message = "hih";
+
+	// console.log(0/"hi");
+
+	// console.log(message[0]);
+	// console.log(message.length);
+	// console.log(message.indexOf("h"));
+	// console.log(message.lastIndexOf("h"));
+
+	// Three types of events to use for user input
+	// 1. onsubmit - when form submits
+	// 2. onchange - when an input gets changed
+	// 3. oninput - when something happens to an input
+
+
+	// onsubmit -- gets applied to the FORM
+	document.querySelector("form").onsubmit = function(event) {
+
+		// by default, submitting a form refreshes the page. To override the refresh, use method called preventDefault()
+		event.preventDefault();
+
+		console.log("Form is submitted!");
+
+		// Grab the user input and store it in a variable named userInput
+		let nameInput = document.querySelector("#name-input").value;
+		let ageInput = document.querySelector("#age-input").value;
+
+		console.log(nameInput);
+		console.log(ageInput);
+
+		// Quick validation
+		// .trim() removes any leading and trailing white spaces
+		if(document.querySelector("#name-input").value.trim().length == 0) {
+			// Set the error message text
+			// Show the error message
+			document.querySelector("#name-input").nextElementSibling.innerHTML = "Name cannot be empty";
+			document.querySelector("#name-input").nextElementSibling.style.visibility = "visible";
+		}
+		else {
+			// hide the error message
+			document.querySelector("#name-input").nextElementSibling.style.visibility = "hidden";
+		}
+
+
+
+
+	}
+
+	// onchange - gets applied to the INPUT tag. onchange means when the user's focus on that input changes
+	document.querySelector("#name-input").onchange = function() {
+		console.log("input has changed!!");
+	}
+
+	// oninput - gets applied to the INPUT tag.
+	document.querySelector("#name-input").oninput = function() {
+		console.log("oninput");
+	}
+
+
+	// Keyboard events - can detect keypresses anywhere, not just input tags
+
+	// document.querySelector("body").onkeydown = function() {
+	// 	console.log("onkeydown");
+	// }
+	// document.querySelector("body").onkeyup = function() {
+	// 	console.log("onkeyup");
+	// }
+	// -- keypress doesn't resgiter the arrow, control, etc. only "typing text"
+	// document.querySelector("body").onkeypress = function() {
+	// 	console.log("onkeypress");
+	// }
+
+
+	// how do we know what the user actually typed?
+	document.querySelector("body").onkeypress = function(event) {
+		console.log(event.key);
+
+		// Display what i typed in the browser
+		document.querySelector("#text").innerHTML += event.key;
+	}
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
