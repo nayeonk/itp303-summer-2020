@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>iTunes API</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+	<style>
+		.table th, .table td {
+			text-align: center;
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<label for="bgInput">Choose a background color: </label>
+			<select id="bgInput">
+				<option value="white">White</option>
+				<option value="blue">Blue</option>
+				<option value="pink">Pink</option>
+			</select>
+		</div>
+
+		<div class="row">
+			<h1 class="col-12 mt-4">iTunes JSON API</h1>
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<form action="" method="" class="col-12" id="search-form">
+				<div class="form-row">
+
+					<div class="col-12 mt-4 col-sm-6 col-lg-4">
+						<label for="search-id" class="sr-only">Search:</label>
+						<input type="text" name="" class="form-control" id="search-id" placeholder="Search...">
+					</div>
+
+					<div class="col-12 mt-4 col-sm-4 col-md-3 col-lg-2">
+						<label for="limit-id" class="sr-only">Number of results:</label>
+						<select name="" class="form-control" id="limit-id">
+							<option value="5">5 results</option>
+							<option value="10">10 results</option>
+							<option value="25">25 results</option>
+							<option value="50">50 results</option>
+							<option value="100">100 results</option>
+						</select>
+					</div>
+
+					<div class="col-12 mt-4 col-sm-auto">
+						<button type="submit" class="btn btn-primary btn-block">Search</button>
+					</div>
+
+				</div> <!-- .form-row -->
+			</form>
+
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<div class="col-12 mt-4">
+				Showing <span id="num-results" class="font-weight-bold">1</span> result(s).
+			</div>
+
+			<table class="table table-responsive table-striped col-12 mt-3">
+				<thead>
+					<tr>
+						<th>Cover</th>
+						<th>Artist</th>
+						<th>Track</th>
+						<th>Album</th>
+						<th>Preview</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr>
+						<td><img src="http://is2.mzstatic.com/image/thumb/Music/v4/40/d0/29/40d029b5-4c32-53d2-69d1-ea04a513c345/source/100x100bb.jpg"></td>
+						<td>The Beatles</td>
+						<td>Here Comes the Sun</td>
+						<td>Abbey Road</td>
+						<td><audio src="https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview71/v4/46/48/7d/46487d90-d40c-7c47-7285-5edbfd0fd2c0/mzaf_5516723347634890825.plus.aac.p.m4a" controls></audio></td>
+					</tr>
+
+
+				</tbody>
+			</table>
+		</div> <!-- .row -->
+
+	</div> <!-- .container-fluid -->
+
+<script>
+
+	// Declare a function for AJAZ calls
+	function ajax(urlParam, callBackFunction) {
+		// Making an AJAX call with JS
+		let httpRequest = new XMLHttpRequest();
+		// create a request
+		httpRequest.open("GET", urlParam);
+		httpRequest.send();
+		// hopefully the itunes server will respond with something. When it does, we need to handle that event
+		httpRequest.onreadystatechange = function() {
+			// This code will run when some kind of response has come back.
+			console.log(httpRequest.readyState);
+			if(httpRequest.readyState == 4) {
+				// We've gotten a full repsonse back
+				if( httpRequest.status == 200 ) {
+					// http code 200 means succes
+					console.log(httpRequest.responseText);
+					callBackFunction(httpRequest.responseText);
+				}
+				else {
+					// Probably got some error
+					alert("AJAX Error!!!");
+				}
+			}
+		}
+		console.log("hey i'm here!!");		
+	}
+
+	function displayResults(responseParam) {
+
+		// Remove all <tr> tags within the <tbody> every time we make a new search
+
+		let tbody = document.querySelector("tbody");
+		// .hasChildNodes() - returns TRU or FALSE
+		// True - element has children
+		// False - element does NOT have children
+		while( tbody.hasChildNodes() ) {
+			tbody.removeChild(tbody.lastChild);
+		}
+
+
+		// Display the results from iTunes API in this page
+
+		// Convert this JSON string into JS objects so that i can access individual information about the search results
+		let results = JSON.parse(responseParam);
+		console.log(results);
+		console.log(results.resultCount);
+
+		/* <tr>
+			<td><img src="http://is2.mzstatic.com/image/thumb/Music/v4/40/d0/29/40d029b5-4c32-53d2-69d1-ea04a513c345/source/100x100bb.jpg"></td>
+			<td>The Beatles</td>
+			<td>Here Comes the Sun</td>
+			<td>Abbey Road</td>
+			<td><audio src="https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview71/v4/46/48/7d/46487d90-d40c-7c47-7285-5edbfd0fd2c0/mzaf_5516723347634890825.plus.aac.p.m4a" controls></audio></td>
+		</tr> */
+
+		for (let i = 0; i < results.results.length; i++) {
+
+			let trElement = document.createElement("tr");
+			// Create cover image on the fly
+			let coverTd = document.createElement("td");
+			let imgElement = document.createElement("img");
+			imgElement.src = results.results[i].artworkUrl100;
+			// Append <img> to the <td>
+			coverTd.appendChild(imgElement);
+
+			console.log(coverTd);
+
+			// Create <td> for artist
+			let artistTd = document.createElement("td");
+			artistTd.innerHTML = results.results[i].artistName;
+
+			// Create <td> for track name
+			let trackTd = document.createElement("td");
+			trackTd.innerHTML = results.results[i].trackName;
+
+			// Create <td> for album name
+			let albumTd = document.createElement("td");
+			albumTd.innerHTML = results.results[i].collectionName;
+
+			// Create <td> for audio
+			let audioTd = document.createElement("td");
+			// Create <audio> tag for the audio player
+			let audioElement = document.createElement("audio");
+			audioElement.src = results.results[i].previewUrl;
+			// For the play/pause/volume buttons
+			audioElement.controls = true;
+			// Append <audio> to <td>
+			audioTd.appendChild(audioElement);
+
+			// Append all the <td> tags to the <tr>
+			trElement.appendChild(coverTd);
+			trElement.appendChild(artistTd);
+			trElement.appendChild(trackTd);
+			trElement.appendChild(albumTd);
+			trElement.appendChild(audioTd);
+
+			// Append the <tr> to the existing <tbody>
+			document.querySelector("tbody").appendChild(trElement);
+		}
+
+	}
+
+	// onsubmit will handle both "click" on search button and pressing "enter" on keyboard on a form
+	document.querySelector("#search-form").onsubmit = function(event) {
+
+		// Don't actually submit the form
+		event.preventDefault();
+
+		// Grab user input
+		let searchInput = document.querySelector("#search-id").value.trim();
+
+		let limitInput = document.querySelector("#limit-id").value;
+
+		let url = "https://itunes.apple.com/search?term=" + searchInput + "&limit=" + limitInput;
+
+		// Call the ajax function
+		ajax(url, displayResults);
+
+	}
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

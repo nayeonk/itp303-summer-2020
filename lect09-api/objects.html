@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Objects</title>
+	<style>
+		#people {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<h1>People</h1>
+	<div id="people">
+
+
+
+
+	</div>
+
+	<script>
+		// Two ways to create ab object in JS
+
+		// 1. Literal syntax 
+		let tommy = {
+			name: "Tommy Trojan",
+			phone: {
+				cell: "123-123-1234",
+				home: "555-555-5555"
+			},
+			hobbies: ["standing", "taking photos", "cheering for the team"],
+			greet: function() {
+				console.log("Hi! I'm Tommy Trojan!")
+			}
+		};
+		let traveler = {
+			name: "Traveler van Horse",
+			phone: {
+				cell: "123-123-1234",
+				home: "555-555-5555"
+			},
+			hobbies: ["looking good", "fighting on"],
+			greet: function() {
+				console.log("Hi! I'm Traveler!")
+			}
+		};
+
+		console.log(tommy);
+		console.log(tommy.name);
+		console.log(tommy.hobbies[0]);
+		console.log(tommy.phone.cell);
+		tommy.greet();
+
+		// 2. Constructor Function Syntax
+		// reminds you of creating a "class"
+		function Person (nameParam, ageParam) {
+			this.name = nameParam;
+			this.age = ageParam;
+			this.greet = function() {
+				console.log("Hi" + this.name + "!");
+			}
+		}
+
+		// Create instances of Person
+		let joe = new Person("Joe Smith", 35);
+		let sally = new Person("Sally Smith", 12);
+
+		console.log(joe);
+		console.log(joe.age);
+
+		// When working with objects, we typically store them in array
+
+		let peopleList = [];
+		// .push to add new items to an array
+		peopleList.push(joe,sally,tommy, traveler);
+		console.log(peopleList);
+
+		// Now that I have a list of objects, I can go through the list and display all the items in a list
+		for(let i = 0; i < peopleList.length; i++) {
+
+			// Create elements on the fly
+			let pElement = document.createElement("h1");
+			pElement.innerHTML = peopleList[i].name;
+			console.log(pElement);
+
+			// Let's actually show these elements on the browser by appending it to an element that exists
+
+			document.querySelector("#people").appendChild(pElement);
+
+		}
+
+
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
