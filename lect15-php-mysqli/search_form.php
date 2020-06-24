@@ -140,8 +140,17 @@ $mysqli->close();
 					<select name="media_type" id="media-type-id" class="form-control">
 						<option value="" selected>-- All --</option>
 
-						<option value='1'>MPEG audio file</option>
-						<option value='2'>Protected AAC audio file</option>
+						<!-- <option value='1'>MPEG audio file</option>
+						<option value='2'>Protected AAC audio file</option> -->
+
+						<!-- Alternate PHP syntax -->
+	<?php while($row = $results_media_types->fetch_assoc()) : ?>
+
+		<option value="<?php echo $row['media_types_id']?>">
+			<?php echo $row['name'] ?>
+		</option>
+
+	<?php endwhile; ?>
 
 					</select>
 				</div>
